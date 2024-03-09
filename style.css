@@ -5,6 +5,7 @@
 --fg2: #111;
 --bc: #ddd;
 --ff: Menlo,Consolas,Monaco,"Liberation Mono","Lucida Console",monospace;
+--lnk: blue;
 }
 @media(prefers-color-scheme:dark) {
 :root {
@@ -13,10 +14,19 @@
 --fg: #fffa;
 --fg2: #fffd;
 --bc: #333;
+--lnk: #d0dadf;
 }
 }
 * { font-size: 14px }
 html { font-family: var(--ff); height: 100%; margin: 0; padding: 0; color: var(--fg) }
-body { font-size: 14px; line-height: 1.25; max-width: 540px; margin: 0 auto; padding: 1rem; background: var(--bg) }
-ul { padding-inline-start: 1rem }
-button, input[type="text"] { font-size: 14px; outline: 0; border: 1px solid var(--bc); background: var(--bg); color: var(--fg2); padding: 0.5rem; font-family: var(--ff) }
+body { font-size: 16px; line-height: 1.6; max-width: 60ch; margin: 0 auto; padding: 1rem; background: var(--bg) }
+ul { padding-inline-start: 1rem; line-height: 1.5 }
+li { margin: 0.5rem 0 }
+li::marker { color: var(--fg2) }
+h1,h2 { color: var(--fg2) }
+button, input[type="text"] { font-size: 14px; outline: 0; border: 1px solid var(--bc); background: var(--bg); color: var(--fg2); padding: 0.5rem; font-family: var(--ff); margin: 0.25rem 0 }
+input[type="text"] { box-sizing: border-box; width: 100% }
+button:hover, bitton:active, input[type="text"]:hover, input[type="text"]:focus { border: 1px solid var(--fg) }
+a { text-decoration: none; border-bottom: 1px solid var(--bc); color: var(--lnk) }
+a:hover, a:active { border-bottom: 1px solid var(--lnk); color: var(--lnk) }
+hr { height: 0; outline: none; border: none; border-top: 1px solid var(--bc) }
