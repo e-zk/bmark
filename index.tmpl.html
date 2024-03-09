@@ -15,7 +15,7 @@
 {{if .Bookmarks }}
 <ul>
 {{ range .Bookmarks }}
-	<li><a href="{{.Link}}">{{if .Title }}{{.Title}}{{else}}{{.Link}}{{end}}</a></li>
+	<li><a href="{{.Link}}">{{if .Title }}{{.Title}}{{else}}{{.Link}}{{end}}</a> | <a href="/delete/{{.Id}}">remove</a></li>
 {{end}}
 </ul>
 {{else}}
