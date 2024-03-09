@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/dyatlov/go-opengraph/opengraph"
@@ -44,13 +45,32 @@ func ogToBookmark(og *opengraph.OpenGraph) Bookmark {
 // routing
 func serveHandler() http.Handler {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", handleIndex)
 	mux.HandleFunc("GET /style.css", handleCss)
 	mux.HandleFunc("/save", handleSave)
+	mux.HandleFunc("/delete/{id}", handleDelete)
+	mux.HandleFunc("/", handleIndex)
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		mux.ServeHTTP(w, r)
 	})
+}
+
+func handleDelete(w http.ResponseWriter, r *http.Request) {
+	ids := r.PathValue("id")
+	id, err := strconv.Atoi(ids)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	err = dbDelete(id)
+	if err != nil {
+		log.Printf("error removing link %d to db: %v", id, err)
+		http.Error(w, err.Error(), 500)
+		return
+	}
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+	return
 }
 
 // handle saving link (GET or POST)
