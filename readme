@@ -4,6 +4,7 @@ save links via http, and soon taildrop.
 over http will display links added in chronological order.
 
 todo:
-- actually impl. save via taildrop support
-- need to specify Server.Dir: https://pkg.go.dev/tailscale.com/tsnet#example-Server-Dir
-  this is where taildrop'd files will be stored (e.g. XDG_CONFIG_HOME/tsnet-test/files/file.txt)
+- remove links.
+- actually impl. save via taildrop support.
+  - need to specify Server.Dir: https://pkg.go.dev/tailscale.com/tsnet#example-Server-Dir.
+    this is where taildrop'd files will be stored (e.g. XDG_CONFIG_HOME/tsnet-test/files/file.txt).
