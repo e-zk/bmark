@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+</head>
+<body>
+<h1>bookmarks</h1>
+<p>Hello <b>{{.RemoteUser}}</b> from <b>{{.RemoteHost}}</b> ({{.RemoteAddr}})</p>
+<form action="/save" method="post">
+<label for="link">link: </label>
+<input name="link" type="text"></input>
+<button type="submit">save</button>
+</form>
+{{if .Bookmarks }}
+<ul>
+{{ range .Bookmarks }}
+	<li>[<a href="{{.Link}}">link</a>] {{ .Title }}</li>
+{{end}}
+</ul>
+{{else}}
+<p>no bookmarks</p>
+{{end}}
+</body>
+</html>
+
