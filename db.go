@@ -87,3 +87,22 @@ func dbSave(bookmark Bookmark) error {
 		return b.Put(itob(bookmark.Id), buf.Bytes())
 	})
 }
+
+func dbDelete(id int) error {
+	idk := itob(id)
+
+	db, err := bolt.Open(dbPath, 0600, nil)
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	return db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte("bookmarks"))
+		err := b.Delete(idk)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+}
